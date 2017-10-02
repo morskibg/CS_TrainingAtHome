@@ -11,21 +11,20 @@ namespace _3
         static void Main(string[] args)
         {
             string input = Console.ReadLine();
-            Dictionary<string, long> database = new Dictionary<string, long>();
+            Dictionary<string, decimal> database = new Dictionary<string, decimal>();
             while(input != "Over")
             {
-                long number = 0;
+                decimal number = 0;
                 char[] delimiters = " :".ToCharArray();
                 string[] nameAndNumber = input.Split(delimiters).ToArray();
-                string name = "";
-                if (long.TryParse(nameAndNumber.First(),out number))
+                if (decimal.TryParse(nameAndNumber.First(),out number))
                 {
-                    number = long.Parse(nameAndNumber.First());
+                    number = decimal.Parse(nameAndNumber.First());
                     database[nameAndNumber.Last()] = number;
                 }
                 else
                 {
-                    number = long.Parse(nameAndNumber.Last());
+                    number = decimal.Parse(nameAndNumber.Last());
                     database[nameAndNumber.First()] = number;
                 }
                 input = Console.ReadLine();

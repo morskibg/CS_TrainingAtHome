@@ -11,9 +11,8 @@ namespace _2
         static void Main(string[] args)
         {
             string input = Console.ReadLine();
-
             Dictionary<string, int> dataBase = new Dictionary<string, int>();
-            while(input != "end")
+            while (input != "end")
             {
                 char[] delimiters = " =".ToCharArray();
                 string[] nameAndMoney = input.Split(delimiters).ToArray();
@@ -29,14 +28,13 @@ namespace _2
                     if (dataBase.ContainsKey(nameAndMoney.Last()))
                     {
                         dataBase[name] = dataBase[nameAndMoney.Last()];
-                    }                 
+                    }
                 }
                 input = Console.ReadLine();
             }
-            foreach(KeyValuePair<string, int> kvp in dataBase)
+            foreach (KeyValuePair<string, int> kvp in dataBase)
             {
                 Console.WriteLine(kvp.Key + " === " + kvp.Value);
-
             }
         }
     }
