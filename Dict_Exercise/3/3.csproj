@@ -1,23 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-=======
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
->>>>>>> 240c157745c62f6c652ae3aa3cdde77274ca9836
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-<<<<<<< HEAD
-    <ProjectGuid>{683AA7BE-DA4E-4413-845F-FFDD92753D16}</ProjectGuid>
+    <ProjectGuid>{5FE69217-24AC-4E26-8E8D-0E6476D7CD8D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-=======
-    <ProjectGuid>{743CD6CB-6E13-4DA3-AA38-7847E7DFBB39}</ProjectGuid>
-    <OutputType>Exe</OutputType>
->>>>>>> 240c157745c62f6c652ae3aa3cdde77274ca9836
-    <RootNamespace>_2</RootNamespace>
-    <AssemblyName>2</AssemblyName>
+    <RootNamespace>_3</RootNamespace>
+    <AssemblyName>3</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -59,14 +49,4 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-<<<<<<< HEAD
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-=======
->>>>>>> 240c157745c62f6c652ae3aa3cdde77274ca9836
 </Project>
