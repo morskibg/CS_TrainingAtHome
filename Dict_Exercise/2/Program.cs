@@ -11,16 +11,7 @@ namespace _2
         static void Main(string[] args)
         {
             string input = Console.ReadLine();
-<<<<<<< HEAD
-            Dictionary<List<string>, int> dataBase= new Dictionary<List<string>, int>();
-            char[] delimiters = " =".ToCharArray();
-            while (input != "end")
-            {
-                string[] nameAndMoney = input.Split(delimiters).ToArray();
-                string name = nameAndMoney.First();
-                int money = int.Parse(nameAndMoney.Last());
 
-=======
             Dictionary<string, int> dataBase = new Dictionary<string, int>();
             while(input != "end")
             {
@@ -45,7 +36,7 @@ namespace _2
             foreach(KeyValuePair<string, int> kvp in dataBase)
             {
                 Console.WriteLine(kvp.Key + " === " + kvp.Value);
->>>>>>> 240c157745c62f6c652ae3aa3cdde77274ca9836
+
             }
         }
     }
