@@ -27,16 +27,16 @@ namespace _19
                 int[] args = new int[2];
                 string[] commandAndNums = command.Split(ArgumentsDelimiter).ToArray();
                 command = commandAndNums.First();
-                string line = commandAndNums[1] + " " + commandAndNums[2];
+                
                
                 if (command.Equals("add") ||
                     command.Equals("subtract") ||
                     command.Equals("multiply"))
                 {
-                   
-                    string[] stringParams = line.Split(ArgumentsDelimiter).ToArray();
-                    args[0] = int.Parse(stringParams[0]);
-                    args[1] = int.Parse(stringParams[1]);
+                    //string line = commandAndNums[1] + " " + commandAndNums[2];
+                   // string[] stringParams = line.Split(ArgumentsDelimiter).ToArray();
+                    args[0] = int.Parse(commandAndNums[1]) - 1;
+                    args[1] = int.Parse(commandAndNums[2]);
 
                     PerformAction(array, command, args);
                 }
@@ -48,15 +48,15 @@ namespace _19
                 
 
                 PrintArray(array);
-                Console.WriteLine('\n');
+               Console.WriteLine();
 
                 command = Console.ReadLine();
             }
         }
 
-        static void PerformAction(long[] arr, string action, int[] args)
+        static void PerformAction(long[] array, string action, int[] args)
         {
-            long[] array = arr.Clone() as long[];
+            //long[] array = arr.Clone() as long[];
             int pos = args[0];
             int value = args[1];
 
@@ -82,16 +82,38 @@ namespace _19
 
         private static void ArrayShiftRight(long[] array)
         {
-            for (int i = array.Length - 1; i >= 1; i--)
+            long temp = 0;
+            for (int i = array.Length - 1; i >= 0; i--)
             {
+                
+                if (i == array.Length - 1)
+                {
+                    temp = array[i];
+                }
+                else if (i == 0)
+                {
+                    array[i] = temp;
+                    break;
+                }
                 array[i] = array[i - 1];
             }
         }
 
         private static void ArrayShiftLeft(long[] array)
         {
-            for (int i = 0; i < array.Length - 1; i++)
+            long temp = 0;
+            for (int i = 0; i < array.Length ; i++)
             {
+                
+                if (i == 0)
+                {
+                    temp = array[i];
+                }
+                else if (i == array.Length - 1)
+                {
+                    array[i] = temp;
+                    break;
+                }
                 array[i] = array[i + 1];
             }
         }
