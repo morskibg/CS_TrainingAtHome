@@ -48,19 +48,19 @@ namespace Ex5
                 .OrderByDescending(x => x.Key.Length))
             {
                 Console.WriteLine(item.Key);
-                int innerCoun = 1;
+                int innerCounter = 1;
                 foreach (var innerKey in item.Value
                    .OrderBy(x => x.Key.Length))
                 {
-                    Console.WriteLine($"{innerCoun}. {innerKey.Key} - {innerKey.Value}");
-                    ++innerCoun;
+                    Console.WriteLine($"{innerCounter}. {innerKey.Key} - {innerKey.Value}");
+                    ++innerCounter;
                 }
                 if (item.Key == flattenStr)
                 {
                     for (int i = 0; i < flatten.Count; ++i)
                     {
-                        Console.WriteLine($"{innerCoun}. {flatten[i]}");
-                        ++innerCoun;
+                        Console.WriteLine($"{innerCounter}. {flatten[i]}");
+                        ++innerCounter;
                     }
                 }
             }
