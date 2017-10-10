@@ -14,19 +14,14 @@ namespace _2
             int[] nums = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
             int toSkip = commands[0];
             int toTake = commands[1];
-            int[] processedNums = nums                          
+            char[] processedNums = nums                          
                 .Where(x => x >= 65)
                 .Where(x => x <= 90)                
                 .Skip(toSkip)
                 .Take(toTake)
+                .Select(x => Convert.ToChar(x))
                 .ToArray();
-            string result = "";
-            foreach(int num in processedNums)
-            {
-                result += (char)num;
-            }
-            Console.WriteLine(result);
-
+            Console.WriteLine(string.Join("", processedNums));
         }
     }
 }
