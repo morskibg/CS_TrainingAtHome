@@ -15,15 +15,15 @@ namespace Clases
                 .ParseExact(Console.ReadLine(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
             DateTime endDate = DateTime
                 .ParseExact(Console.ReadLine(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-           
-            
+
+
             if (startDate > endDate)
             {
                 DateTime temp = startDate;
                 startDate = endDate;
                 endDate = temp;
             }
-            
+
             int inputYear = endDate.Year;
             int workDays = 0;
             DateTime[] offDays = new DateTime[]
