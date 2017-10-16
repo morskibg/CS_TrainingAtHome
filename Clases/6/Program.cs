@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _5
+namespace _6
 {
     class Program
     {
@@ -12,7 +12,7 @@ namespace _5
         {
             int n = int.Parse(Console.ReadLine());
             Library myLib = new Library();
-            
+
             for (int i = 0; i < n; i++)
             {
                 string[] tokens = Console.ReadLine().Split().ToArray();
@@ -22,25 +22,17 @@ namespace _5
                 DateTime releaseDate = DateTime.ParseExact(tokens[3], "dd.MM.yyyy", null);
                 string ISBN = tokens[4];
                 decimal bookPrice = decimal.Parse(tokens[5]);
-                Book currBook = new Book(title, authorName, publisherName, 
+                Book currBook = new Book(title, authorName, publisherName,
                     releaseDate, ISBN, bookPrice);
-                myLib.AddBook(currBook);
+                myLib.BookDatabase.Add(currBook);
             }
-           Dictionary<string, decimal> filteredByPrice = new Dictionary<string, decimal>();
-            foreach (var currBook in myLib.BookDatabase)
+            DateTime givenaDate = DateTime.ParseExact(Console.ReadLine(), "dd.MM.yyyy", null);
+            foreach (var book in myLib.BookDatabase
+                .Where(x => x.ReleaseDate > givenaDate)
+                .OrderBy(x => x.ReleaseDate)
+                .ThenBy(x => x.Title))
             {
-                string currAuthor = currBook.AuthorsName;
-                if (!filteredByPrice.ContainsKey(currAuthor))
-                {
-                    filteredByPrice[currAuthor] = myLib.GetSumOfSingleAuthors(currAuthor);
-                }
-                
-            }
-            foreach (var author in filteredByPrice
-                .OrderByDescending(x => x.Value)
-                .ThenBy(x => x.Key))
-            {
-                Console.WriteLine($"{author.Key} -> {author.Value:f2}");
+                Console.WriteLine($"{book.Title} -> {book.ReleaseDate.ToString("dd.MM.yyyy")}");
             }
         }
     }
@@ -54,21 +46,6 @@ namespace _5
         {
             BookDatabase = new List<Book>();
         }
-        public void AddBook(Book book)
-        {
-            BookDatabase.Add(book);
-        }
-
-        public decimal GetSumOfSingleAuthors(string currAuthor)
-        {
-            decimal sum = 0;
-            foreach (var book in BookDatabase.Where(x => x.AuthorsName == currAuthor))
-            {
-                sum += book.Price;
-            }
-            return sum;
-        }
-
     }
     class Book
     {
