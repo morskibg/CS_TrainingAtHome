@@ -2,79 +2,64 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
 
-class Training
+namespace Clases
 {
-    static void Main()
+    class Program
     {
-        var library = new Library
+        static void Main(string[] args)
         {
-            Name = "Prosveta",
-            Books = new List<Book>()
-        };
-        var sortedDict = new Dictionary<string, decimal>();
-        int booksCount = int.Parse(Console.ReadLine());
+            DateTime startDate = DateTime
+                .ParseExact(Console.ReadLine(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            DateTime endDate = DateTime
+                .ParseExact(Console.ReadLine(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
-        for (int i = 0; i < booksCount; i++)
-        {
-            var inputTokens = Console.ReadLine().Split();
 
-            var title = inputTokens[0];
-            var author = inputTokens[1];
-            var publisher = inputTokens[2];
-            var releaseDate = DateTime.ParseExact(inputTokens[3], "dd.MM.yyyy", CultureInfo.InstalledUICulture);
-            var isbn = inputTokens[4];
-            var price = decimal.Parse(inputTokens[5]);
-
-            var book = new Book(title, author, publisher, releaseDate, isbn, price);
-
-            library.Books.Add(book);
-        }
-        foreach (var item in library.Books)
-        {
-            if (!sortedDict.ContainsKey(item.Author))
+            if (startDate > endDate)
             {
-                sortedDict.Add(item.Author, 0);
+                DateTime temp = startDate;
+                startDate = endDate;
+                endDate = temp;
             }
-            sortedDict[item.Author] += item.Price;
-        }
-        foreach (var item in sortedDict.OrderByDescending(x => x.Value).ThenBy(x => x.Key))
-        {
-            Console.WriteLine($"{item.Key} -> {item.Value:f2}");
+
+            int inputYear = endDate.Year;
+            int workDays = 0;
+            DateTime[] offDays = new DateTime[]
+            {
+                new DateTime(inputYear, 1, 1),
+                new DateTime(inputYear, 3, 3),
+                new DateTime(inputYear, 5, 1),
+                new DateTime(inputYear, 5, 6),
+                new DateTime(inputYear, 5, 24),
+                new DateTime(inputYear, 9, 6),
+                new DateTime(inputYear, 9, 22),
+                new DateTime(inputYear, 11, 1),
+                new DateTime(inputYear, 12, 24),
+                new DateTime(inputYear, 12, 25),
+                new DateTime(inputYear, 12, 26),
+
+            };
+            DateTime currDay = startDate;
+
+            while (currDay <= endDate)
+            {
+                bool isHolyDay = offDays
+                    .Any(x => x.Month == currDay.Month && x.Day == currDay.Day);
+
+                if (isHolyDay ||
+                    currDay.DayOfWeek == DayOfWeek.Saturday ||
+                    currDay.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    currDay = currDay.AddDays(1);
+
+                    continue;
+                }
+                currDay = currDay.AddDays(1);
+                ++workDays;
+            }
+            Console.WriteLine(workDays);
         }
     }
-
-}
-class Book
-{
-    public Book(string title, string author, string publisher, DateTime releaseDate, string isbn, decimal price)
-    {
-        Title = title;
-        Author = author;
-        Publisher = publisher;
-        ReleaseDate = releaseDate;
-        Isbn = isbn;
-        Price = price;
-    }
-
-
-    public string Title { get; set; }
-
-    public string Author { get; set; }
-
-    public string Publisher { get; set; }
-
-    public DateTime ReleaseDate { get; set; }
-
-    public string Isbn { get; set; }
-
-    public decimal Price { get; set; }
-}
-
-class Library
-{
-    public string Name { get; set; }
-
-    public List<Book> Books { get; set; }
 }
