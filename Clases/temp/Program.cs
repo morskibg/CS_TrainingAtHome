@@ -1,65 +1,116 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clases
+namespace p09_TeamWorkProjects
 {
     class Program
     {
         static void Main(string[] args)
         {
-            DateTime startDate = DateTime
-                .ParseExact(Console.ReadLine(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            DateTime endDate = DateTime
-                .ParseExact(Console.ReadLine(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            Dictionary<string, Team> team = new Dictionary<string, Team>();
+          
+            int n = int.Parse(Console.ReadLine());
 
-
-            if (startDate > endDate)
+            for (int i = 0; i < n; i++)
             {
-                DateTime temp = startDate;
-                startDate = endDate;
-                endDate = temp;
-            }
+                string input = Console.ReadLine();
+                string[] tokens = input.Split('-').ToArray();
 
-            int inputYear = endDate.Year;
-            int workDays = 0;
-            DateTime[] offDays = new DateTime[]
-            {
-                new DateTime(inputYear, 1, 1),
-                new DateTime(inputYear, 3, 3),
-                new DateTime(inputYear, 5, 1),
-                new DateTime(inputYear, 5, 6),
-                new DateTime(inputYear, 5, 24),
-                new DateTime(inputYear, 9, 6),
-                new DateTime(inputYear, 9, 22),
-                new DateTime(inputYear, 11, 1),
-                new DateTime(inputYear, 12, 24),
-                new DateTime(inputYear, 12, 25),
-                new DateTime(inputYear, 12, 26),
+                string creator = tokens[0];
+                string teamName = tokens[1];
 
-            };
-            DateTime currDay = startDate;
-
-            while (currDay <= endDate)
-            {
-                bool isHolyDay = offDays
-                    .Any(x => x.Month == currDay.Month && x.Day == currDay.Day);
-
-                if (isHolyDay ||
-                    currDay.DayOfWeek == DayOfWeek.Saturday ||
-                    currDay.DayOfWeek == DayOfWeek.Sunday)
+                if (!team.ContainsKey(creator))
                 {
-                    currDay = currDay.AddDays(1);
-
-                    continue;
+                    
+                    if (!team.Values.Any(x=> x.Name == teamName))
+                    {
+                        Team currentTeam = new Team();
+                        currentTeam.Name = teamName;
+                        team.Add(creator, currentTeam);
+                                          
+                        Console.WriteLine($"Team {teamName} has been created by {creator}!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Team {teamName} was already created!");
+                    }
                 }
-                currDay = currDay.AddDays(1);
-                ++workDays;
+                else
+                {
+                    Console.WriteLine($"{creator} cannot create another team!");
+                }
+
             }
-            Console.WriteLine(workDays);
+
+
+            string secondInput = Console.ReadLine();
+            List<string> teamMembers = new List<string>();
+
+            while (secondInput != "end of assignment")
+            {
+                string[] teamInfo = secondInput.Split(new char[] { '-', '>' },StringSplitOptions.RemoveEmptyEntries).ToArray();
+                string personJoinName = teamInfo[0];
+                string joinTeamName = teamInfo[1];
+
+                if (team.Values.Any(x => x.Name.Equals(joinTeamName)))
+                {
+                    if (!team.ContainsKey(personJoinName) && 
+                        !team.Values.Any(x => x.TeamMembers.Contains(personJoinName)))
+                    {
+                        var creatorOfTheTeam = team.First(x => x.Value.Name.Equals(joinTeamName));
+                        team[creatorOfTheTeam.Key].TeamMembers.Add(personJoinName);
+                        
+                    }
+                    else
+                    {             
+                        Console.WriteLine($"Member {personJoinName} cannot join team {joinTeamName}!");
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine($"Team {joinTeamName} does not exist!");
+                }
+
+
+
+
+                secondInput = Console.ReadLine();
+            }
+            int t = 0;
+            foreach (var element in team.Where(x => x.Value.TeamMembers.Count > 0).OrderByDescending(x => x.Value.TeamMembers.Count).ThenBy(x => x.Value.Name))
+            {
+                Console.WriteLine(element.Value.Name);
+                Console.WriteLine($"- {element.Key}");
+
+                foreach (var member in element.Value.TeamMembers.OrderBy(x => x))
+                {
+                    Console.WriteLine($"-- {member}");
+                }
+            }
+
+            Console.WriteLine("Teams to disband:");
+
+            foreach (var disbandTeam in team.Where(x => x.Value.TeamMembers.Count == 0).OrderBy(x => x.Value.Name))
+            {
+                Console.WriteLine(disbandTeam.Value.Name);
+            }
+
         }
+    }
+    class Team
+    {
+        public string Name { get; set; }
+        public List<string> TeamMembers { get; set; }
+        //public List<string> TeamMembers = new List<string>();
+        public Team()
+        {
+            Name = "none";
+            TeamMembers = new List<string>();
+        }
+
     }
 }
