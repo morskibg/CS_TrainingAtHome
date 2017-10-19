@@ -1,116 +1,141 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace p09_TeamWorkProjects
+namespace _04.SoftUni_Coffee_Supplies
 {
     class Program
     {
+        public class Coffe
+        {
+            public string CofeeType { get; set; }
+            public int CoffeMaxCount { get; set; }
+            public List<string> PeopleDrinkingThisCoffe { get; set; }
+            public List<int> DrinkingCoffesForWeek { get; set; }
+            public int LeftCoffe { get; set; }
+        }
         static void Main(string[] args)
         {
-            Dictionary<string, Team> team = new Dictionary<string, Team>();
-          
-            int n = int.Parse(Console.ReadLine());
+            List<Coffe> coffeList = new List<Coffe>();
 
-            for (int i = 0; i < n; i++)
+            string[] inputKeys = Console.ReadLine().Split();
+            string firstKey = inputKeys[0].Trim();
+            string secondKey = inputKeys[1].Trim();
+
+            while (true)
             {
-                string input = Console.ReadLine();
-                string[] tokens = input.Split('-').ToArray();
-
-                string creator = tokens[0];
-                string teamName = tokens[1];
-
-                if (!team.ContainsKey(creator))
+                var createCoffe = new Coffe();
+                string inputCoffe = Console.ReadLine();
+                if (inputCoffe == "end of info")
                 {
-                    
-                    if (!team.Values.Any(x=> x.Name == teamName))
+                    break;
+                }
+                if (inputCoffe.Contains(firstKey))
+                {
+                    string[] tokens =
+                        inputCoffe.Split(new string[] { $"{firstKey}" }, StringSplitOptions.RemoveEmptyEntries);
+                    string peopleDrinkingThisCoffe = tokens[0].Trim();
+                    string coffeType = tokens[1].Trim();
+
+                    foreach (var coffe in coffeList)
                     {
-                        Team currentTeam = new Team();
-                        currentTeam.Name = teamName;
-                        team.Add(creator, currentTeam);
-                                          
-                        Console.WriteLine($"Team {teamName} has been created by {creator}!");
+                        if (coffe.CofeeType.Contains(coffeType))
+                        {
+                            coffe.PeopleDrinkingThisCoffe.Add(peopleDrinkingThisCoffe);
+                            break;
+                        }
                     }
-                    else
+                    var result = coffeList.FindIndex(a => a.CofeeType == coffeType);
+                    if (result == -1)
                     {
-                        Console.WriteLine($"Team {teamName} was already created!");
+                        createCoffe.CofeeType = coffeType;
+                        createCoffe.PeopleDrinkingThisCoffe = new List<string>();
+                        createCoffe.DrinkingCoffesForWeek = new List<int>();
+                        createCoffe.PeopleDrinkingThisCoffe.Add(peopleDrinkingThisCoffe);
+
+                        coffeList.Add(createCoffe);
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"{creator} cannot create another team!");
-                }
+                    string[] tokens = inputCoffe.Split(new string[] { $"{secondKey}" },
+                        StringSplitOptions.RemoveEmptyEntries);
 
+                    string coffeType = tokens[0].Trim();
+                    int coffeMaxCount = int.Parse(tokens[1].Trim());
+
+                    int indexOfCurrentCoffe = coffeList.FindIndex(a => a.CofeeType == coffeType);
+
+                    coffeList[indexOfCurrentCoffe].CoffeMaxCount += coffeMaxCount;
+                    coffeList[indexOfCurrentCoffe].LeftCoffe += coffeMaxCount;
+                }
+            }
+            foreach (var zeroCoffe in coffeList)
+            {
+                if (zeroCoffe.LeftCoffe == 0)
+                {
+                    Console.WriteLine($"Out of {zeroCoffe.CofeeType}");
+                }
             }
 
-
-            string secondInput = Console.ReadLine();
-            List<string> teamMembers = new List<string>();
-
-            while (secondInput != "end of assignment")
+            while (true)
             {
-                string[] teamInfo = secondInput.Split(new char[] { '-', '>' },StringSplitOptions.RemoveEmptyEntries).ToArray();
-                string personJoinName = teamInfo[0];
-                string joinTeamName = teamInfo[1];
-
-                if (team.Values.Any(x => x.Name.Equals(joinTeamName)))
+                string drinkingCoffeThisWeek = Console.ReadLine();
+                if (drinkingCoffeThisWeek == "end of week")
                 {
-                    if (!team.ContainsKey(personJoinName) && 
-                        !team.Values.Any(x => x.TeamMembers.Contains(personJoinName)))
+                    break;
+                }
+
+                string[] weeksCoffes = drinkingCoffeThisWeek.Split();
+                string peopleDrinkingCoffe = weeksCoffes[0].Trim();
+                int coffeCount = int.Parse(weeksCoffes[1].Trim());
+
+                foreach (var item in coffeList)
+                {
+                    if (item.PeopleDrinkingThisCoffe.Contains(peopleDrinkingCoffe))
                     {
-                        var creatorOfTheTeam = team.First(x => x.Value.Name.Equals(joinTeamName));
-                        team[creatorOfTheTeam.Key].TeamMembers.Add(personJoinName);
-                        
+                        int indexOfCurrentCoffe =
+                            item.PeopleDrinkingThisCoffe.FindIndex(e => e.Equals(peopleDrinkingCoffe));
+
+                        if (indexOfCurrentCoffe >= 0)
+                        {
+                            item.DrinkingCoffesForWeek.Add(coffeCount);
+                            item.LeftCoffe -= coffeCount;
+                            if (item.LeftCoffe <= 0)
+                            {
+                                Console.WriteLine($"Out of {item.CofeeType}");
+                            }
+                            break;
+                        }
                     }
-                    else
-                    {             
-                        Console.WriteLine($"Member {personJoinName} cannot join team {joinTeamName}!");
+                }
+            }
+            Console.WriteLine("Coffee Left:");
+            foreach (var coffeType in coffeList.OrderByDescending(a => a.LeftCoffe))
+            {
+                int totalDrinkingCoffeForType = coffeType.DrinkingCoffesForWeek.Sum();
+
+                if (coffeType.CoffeMaxCount > totalDrinkingCoffeForType)
+                {
+                    int totalLeftCoffeForType = coffeType.CoffeMaxCount - totalDrinkingCoffeForType;
+                    coffeType.LeftCoffe = totalLeftCoffeForType;
+                    Console.WriteLine($"{coffeType.CofeeType} {totalLeftCoffeForType}");
+                }
+            }
+            Console.WriteLine("For:");
+            foreach (var item in coffeList.OrderBy(a => a.CofeeType))
+            {
+                foreach (var peope in item.PeopleDrinkingThisCoffe.OrderByDescending(a => a))
+                {
+                    if (item.LeftCoffe > 0)
+                    {
+                        Console.WriteLine($"{peope} {item.CofeeType}");
                     }
-
-                }
-                else
-                {
-                    Console.WriteLine($"Team {joinTeamName} does not exist!");
-                }
-
-
-
-
-                secondInput = Console.ReadLine();
-            }
-            int t = 0;
-            foreach (var element in team.Where(x => x.Value.TeamMembers.Count > 0).OrderByDescending(x => x.Value.TeamMembers.Count).ThenBy(x => x.Value.Name))
-            {
-                Console.WriteLine(element.Value.Name);
-                Console.WriteLine($"- {element.Key}");
-
-                foreach (var member in element.Value.TeamMembers.OrderBy(x => x))
-                {
-                    Console.WriteLine($"-- {member}");
                 }
             }
-
-            Console.WriteLine("Teams to disband:");
-
-            foreach (var disbandTeam in team.Where(x => x.Value.TeamMembers.Count == 0).OrderBy(x => x.Value.Name))
-            {
-                Console.WriteLine(disbandTeam.Value.Name);
-            }
-
         }
-    }
-    class Team
-    {
-        public string Name { get; set; }
-        public List<string> TeamMembers { get; set; }
-        //public List<string> TeamMembers = new List<string>();
-        public Team()
-        {
-            Name = "none";
-            TeamMembers = new List<string>();
-        }
-
     }
 }

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9", "9\9.csproj", "{AF75C85
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "last", "last\last.csproj", "{8264E237-E811-4F75-AB38-94342356450E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CofeeSupplies", "CofeeSupplies\CofeeSupplies.csproj", "{C9CDDD94-CF9A-462D-AC63-F53D20D517B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{8264E237-E811-4F75-AB38-94342356450E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8264E237-E811-4F75-AB38-94342356450E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8264E237-E811-4F75-AB38-94342356450E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CDDD94-CF9A-462D-AC63-F53D20D517B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CDDD94-CF9A-462D-AC63-F53D20D517B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CDDD94-CF9A-462D-AC63-F53D20D517B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CDDD94-CF9A-462D-AC63-F53D20D517B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
