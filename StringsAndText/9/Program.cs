@@ -34,6 +34,11 @@ namespace ConsoleApp1
         {
             StringBuilder text = new StringBuilder(Console.ReadLine());
             StringBuilder pattern = new StringBuilder(Console.ReadLine());
+            if (text.Length == 0)
+            {
+                Console.WriteLine("No shake.");
+                return;
+            }
             bool isStillRunning = true;
             while (isStillRunning)
             {
