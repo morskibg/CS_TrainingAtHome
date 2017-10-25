@@ -18,31 +18,42 @@ namespace ConsoleApp1
             }
             int beginIdx = tempText.IndexOf(tempPattern);
             int endIdx = tempText.LastIndexOf(tempPattern);
+            
+            if (endIdx - beginIdx < pattern.Length)
+            {
+                return false;
+            }
+
             text.Remove(beginIdx, pattern.Length);
-            if (beginIdx == endIdx)
-            {
-                pattern.Remove(pattern.Length / 2, 1);
-                return false;
-            }
             endIdx -= pattern.Length; 
-            text.Remove(endIdx, text.Length - endIdx - pattern.Length);
-            pattern.Remove(pattern.Length / 2, 1);
-            if(pattern.Length == 0)
-            {
-                return false;
-            }
-            int t = 0;
+            text.Remove(endIdx, pattern.Length);
+           
             return true;
         }
         static void Main(string[] args)
         {
             StringBuilder text = new StringBuilder(Console.ReadLine());
             StringBuilder pattern = new StringBuilder(Console.ReadLine());
-            bool isCompleted = false;
-            while (!isCompleted)
+            bool isStillRunning = true;
+            while (isStillRunning)
             {
-                isCompleted =  MelrahShake(ref text, ref pattern);
+                isStillRunning =  MelrahShake(ref text, ref pattern);
+                if (isStillRunning)
+                {
+                    Console.WriteLine("Shaked it.");
+                    pattern.Remove(pattern.Length / 2, 1);
+                    if (pattern.Length == 0)
+                    {
+                        isStillRunning = false;
+                    }
+                }
+                if(!isStillRunning)
+                {
+                    Console.WriteLine("No shake.");
+                }
+                
             }
+            Console.WriteLine(string.Join("", text));
         }
     }
 }
