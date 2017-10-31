@@ -20,10 +20,9 @@ namespace temp
             prob.Add("first",innerDict);
             string key = prob.Keys.First();
             Console.WriteLine(key);
-            foreach (var item in prob)
+            foreach (var item in prob.Where(x => x.))
             {
-                Console.WriteLine(item.Value.Keys.First());
-                item.Value.Keys.First();
+               
             }
             prob.Keys.First();
             int t = 0;
