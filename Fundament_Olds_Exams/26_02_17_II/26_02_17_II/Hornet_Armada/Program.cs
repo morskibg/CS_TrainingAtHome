@@ -16,7 +16,7 @@ namespace Hornet_Armada
             List<Legion> legions = new List<Legion>();
             for (int i = 0; i < numberOfLines; ++i)
             {
-                //MatchCollection matchInput = Regex.Matches(Console.ReadLine(), pattern);
+                
                 Regex matchInput = new Regex(pattern);
                 Match currInput = matchInput.Match(Console.ReadLine());
 
@@ -28,29 +28,61 @@ namespace Hornet_Armada
                 if(!legions.Any(x => x.Name == legionName))
                 {
                     Legion newLegion = new Legion();
-                    newLegion.LastActivity = lastActivity;
-                    newLegion.Army.Add(soldierType, soldierCount);
+                    Dictionary<long, long> activityAndcount = new Dictionary<long, long> {{ lastActivity, soldierCount}}; 
+                    newLegion.Army.Add(soldierType, activityAndcount);
+                    newLegion.Name = legionName;
                     legions.Add(newLegion);
                 }
                 else
                 {
                     int idxOfExistingLegion = legions.FindIndex(x => x.Name == legionName);
-                    
+                    if (!legions[idxOfExistingLegion].Army.ContainsKey(soldierType))
+                    {
+                        legions[idxOfExistingLegion].Army[soldierType] =
+                            new Dictionary<long, long> {{lastActivity, soldierCount}};
+                    }
+                    else
+                    {
+                        long currActivity = legions[idxOfExistingLegion].Army[soldierType].Keys.First();
+                        long currSoldiersCount = legions[idxOfExistingLegion].Army[soldierType].Values.First();
+                        Dictionary<long, long> newInnerDict = new Dictionary<long, long>();
+                        currSoldiersCount += soldierCount;
+
+                        if (currActivity < lastActivity)
+                        {
+                            newInnerDict[lastActivity] = currSoldiersCount;
+                        }
+                        else
+                        {
+                            newInnerDict[currActivity] = currSoldiersCount;
+                        }
+                    }
                 }
-                int t = 0;
             }
+            string command = Console.ReadLine();
             
+            if (command.Contains(@"\"))
+            {
+               
+            }
+            else
+            {
+                
+            }
+
         }
 
         class Legion
         {
             public string Name { get; set; }
-            public Dictionary<string, long> Army { get; set; }
-            public long LastActivity { get; set; }
+            public Dictionary<string, Dictionary<long, long>> Army { get; set; }
+            
             public Legion()
             {
-                Army = new Dictionary<string, long>();
+                Army = new Dictionary<string, Dictionary<long, long>>();
             }
+
+            
         }
     }
 }
