@@ -29,7 +29,13 @@ namespace Hornet_Armada
                 {
                     Legion newLegion = new Legion();
                     newLegion.LastActivity = lastActivity;
-                    newLegion.Army.Add()
+                    newLegion.Army.Add(soldierType, soldierCount);
+                    legions.Add(newLegion);
+                }
+                else
+                {
+                    int idxOfExistingLegion = legions.FindIndex(x => x.Name == legionName);
+                    
                 }
                 int t = 0;
             }
