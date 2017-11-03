@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. Nether Realms", "03. Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "temp", "temp\temp.csproj", "{FEC80AF7-A7E1-46E2-8172-D6CB6740B5E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. Roli The Coder", "04. Roli The Coder\04. Roli The Coder.csproj", "{EA8AB890-DC96-4DF1-927A-8AD2F6E844C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FEC80AF7-A7E1-46E2-8172-D6CB6740B5E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEC80AF7-A7E1-46E2-8172-D6CB6740B5E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEC80AF7-A7E1-46E2-8172-D6CB6740B5E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA8AB890-DC96-4DF1-927A-8AD2F6E844C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA8AB890-DC96-4DF1-927A-8AD2F6E844C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA8AB890-DC96-4DF1-927A-8AD2F6E844C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA8AB890-DC96-4DF1-927A-8AD2F6E844C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
