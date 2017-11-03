@@ -16,14 +16,15 @@ namespace _02.Ladybugs
             List<long> initaialIndices = Console.ReadLine().Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
                 .Select(long.Parse)
                 .ToList();
-            foreach (var index in initaialIndices)
+            for(int index = 0; index < initaialIndices.Count;++index)
             {
-                if(index >= 0 && index < fieldSize)
+                if(initaialIndices[index] >= 0 && initaialIndices[index] < fieldSize)
                 {
-                    field[index] = 1;
+                    field[initaialIndices[index]] = 1;                   
                 }
                 
             }
+            //Console.WriteLine(string.Join(" ", field));
             while (true)
             {
                 string input = Console.ReadLine();
@@ -33,13 +34,14 @@ namespace _02.Ladybugs
                 }
                 string[] query = input.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 long ladybugIndex = long.Parse(query[0]);
-                if (ladybugIndex < 0 || ladybugIndex >= fieldSize)
+                if (ladybugIndex < 0 || ladybugIndex >= fieldSize || field[ladybugIndex] == 0)
                 {
                     continue;
                 }
                 field[ladybugIndex] = 0;
                 string command = query[1].Trim();
                 long flyLength = long.Parse(query[2]);
+                long startFlyLength = flyLength;
                 while (true)
                 {
 
@@ -55,7 +57,7 @@ namespace _02.Ladybugs
                         field[landingIdx] = 1;
                         break;
                     }
-                    flyLength += flyLength;
+                    flyLength += startFlyLength;
                 }
             }
             Console.WriteLine(string.Join(" ", field));
