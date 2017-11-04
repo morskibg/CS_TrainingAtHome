@@ -1,42 +1,95 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
-namespace _03.Nether_Realms
+namespace _04.Roli_The_Coder
 {
     class Program
     {
         static void Main()
         {
-            var demons = Regex
-                .Matches(Console.ReadLine(), @"([^ ,]+)")
-                .Cast<Match>()
-                .Select(x => x.Value.Trim())
-                .OrderBy(x => x)
+            var eventsRegex = new Regex(@"(?<id>\d+)\s+#(?<event>\w+)\s*(?<participants>(?:@[\dA-Za-z'\-]+\s*)*)");
+
+            var events = new Dictionary<int, Event>();
+
+            while (true)
+            {
+                var input = Console.ReadLine();
+
+                if ("Time for Code".Equals(input))
+                {
+                    break;
+                }
+
+                var evnt = eventsRegex.Match(input);
+
+                if (!evnt.Success)
+                {
+                    continue;
+                }
+
+                var id = int.Parse(evnt.Groups["id"].Value);
+                var eventName = evnt.Groups["event"].Value;
+                var participantsStr = evnt.Groups["participants"].Value;
+
+                if (events.ContainsKey(id))
+                {
+                    if (!events[id].Name.Equals(eventName))
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    events[id] = new Event(eventName);
+                }
+
+                if (participantsStr.Length > 0)
+                {
+                    events[id].Participants.UnionWith(
+                        participantsStr
+                            .Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+                }
+            }
+
+            var sortedEvents = events
+                .OrderByDescending(pair => pair.Value.Participants.Count)
+                .ThenBy(a => a.Value.Name)
+                .Select(a => a.Value)
                 .ToList();
 
-            foreach (var demon in demons)
+            foreach (var sortedEvent in sortedEvents)
             {
-                var health = Regex.Matches(demon, @"([^ \+\-\.\*\/0-9])")
-                    .Cast<Match>()
-                    .Select(x => (int)x.Value.ToCharArray()[0])
-                    .Sum();
-                   
+                Console.WriteLine(sortedEvent);
+            }
+        }
 
-                var damage = Regex.Matches(demon, @"-?\d+(?:\.\d+)?")
-                    .Cast<Match>()
-                    .Select(x => double.Parse(x.Value))
-                    .Sum();
+        private class Event
+        {
+            public string Name { get; }
 
-                var mult = Regex.Matches(demon, @"(\*)").Count;
+            public SortedSet<string> Participants { get; }
 
-                var div = Regex.Matches(demon, @"(\/)").Count;
+            public Event(string name)
+            {
+                Name = name;
+                Participants = new SortedSet<string>();
+            }
 
-                damage *= Math.Pow(2, mult);
+            public override string ToString()
+            {
+                var sb = new StringBuilder();
+                sb.Append($"{Name} - {Participants.Count}");
 
-                damage /= Math.Pow(2, div);
+                if (Participants.Count > 0)
+                {
+                    sb.Append(Environment.NewLine);
+                    sb.Append(string.Join(Environment.NewLine, Participants));
+                }
 
-                Console.WriteLine($"{demon} - {health} health, {damage:F2} damage");
+                return sb.ToString();
             }
         }
     }
