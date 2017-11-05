@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. Rage Quit", "03. Rage Q
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. Files", "04. Files\04. Files.csproj", "{0D4100FC-65BF-490F-91C6-AA5BC2D100B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "temp", "temp\temp.csproj", "{C4EBBFA5-2EF3-41C4-91F7-06F0C84D28E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0D4100FC-65BF-490F-91C6-AA5BC2D100B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D4100FC-65BF-490F-91C6-AA5BC2D100B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D4100FC-65BF-490F-91C6-AA5BC2D100B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4EBBFA5-2EF3-41C4-91F7-06F0C84D28E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4EBBFA5-2EF3-41C4-91F7-06F0C84D28E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4EBBFA5-2EF3-41C4-91F7-06F0C84D28E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4EBBFA5-2EF3-41C4-91F7-06F0C84D28E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

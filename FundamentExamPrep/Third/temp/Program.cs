@@ -12,28 +12,24 @@ namespace _04.Files
         static void Main(string[] args)
         {
             int numberOfFiles = int.Parse(Console.ReadLine());
-           
-            var database = new Dictionary<string, Dictionary<string, ulong>>();
+            var database = new Dictionary<string, Dictionary<string, decimal>>();
             for (int i = 0; i < numberOfFiles; i++)
             {
-                
-                var entry = Console.ReadLine().Split('\\');
+                Match currentMatches = Regex
+                    .Match(Console.ReadLine(), @"^(?<root>[^\\]*)([\\].+[\\])(?<fileName>.+(?=\;))\;(?<size>\d+)");
 
-                string root = entry.First();
+                string root = currentMatches.Groups["root"].ToString();
+                string fileName = currentMatches.Groups["fileName"].ToString();
+                string sizeStr = currentMatches.Groups["size"].ToString();
 
-                string fileName = entry.Last().Split(';').First();
-                string sizeStr = entry.Last().Split(';').Last();
-
-                ulong size = ulong.Parse(sizeStr);
+                decimal size = decimal.Parse(sizeStr);
                 if (!database.ContainsKey(root))
                 {
-                    database[root] = new Dictionary<string, ulong>();
-                    
+                    database[root] = new Dictionary<string, decimal>();
+
                 }
                 database[root][fileName] = size;
-             
-
-            }
+                }
             string[] query = Console.ReadLine().Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Trim())
                 .ToArray();
@@ -42,13 +38,13 @@ namespace _04.Files
             bool isPrinted = false;
             foreach (var root in database.Keys.Where(x => x == lookedRoot))
             {
-                //Console.WriteLine($"{root} -> ");
+               
                 if (database[root].Count == 0)
                 {
                     Console.WriteLine("No");
                     return;
                 }
-                
+
                 foreach (var kvp in database[root]
                     .Where(x => x.Key.EndsWith(lookedFileExtention))
                     .OrderByDescending(x => x.Value)
