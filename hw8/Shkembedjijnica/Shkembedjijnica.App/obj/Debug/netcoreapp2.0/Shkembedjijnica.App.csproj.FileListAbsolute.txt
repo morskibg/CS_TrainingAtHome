@@ -1,0 +1,16 @@
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.App.deps.json
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.App.runtimeconfig.json
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.App.runtimeconfig.dev.json
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.App.dll
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\obj\Debug\netcoreapp2.0\Shkembedjijnica.App.csprojResolveAssemblyReference.cache
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\obj\Debug\netcoreapp2.0\Shkembedjijnica.App.csproj.CoreCompileInputs.cache
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\obj\Debug\netcoreapp2.0\Shkembedjijnica.App.AssemblyInfoInputs.cache
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\obj\Debug\netcoreapp2.0\Shkembedjijnica.App.AssemblyInfo.cs
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.App.pdb
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.Data.dll
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.Models.dll
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.Data.pdb
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\bin\Debug\netcoreapp2.0\Shkembedjijnica.Models.pdb
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\obj\Debug\netcoreapp2.0\Shkembedjijnica.App.csproj.CopyComplete
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\obj\Debug\netcoreapp2.0\Shkembedjijnica.App.dll
+D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.App\obj\Debug\netcoreapp2.0\Shkembedjijnica.App.pdb
