@@ -1,9 +1,0 @@
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\bin\Debug\netcoreapp2.0\Shkembedjijnica.Models.deps.json
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\bin\Debug\netcoreapp2.0\Shkembedjijnica.Models.dll
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\bin\Debug\netcoreapp2.0\Shkembedjijnica.Models.pdb
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\obj\Debug\netcoreapp2.0\Shkembedjijnica.Models.csprojResolveAssemblyReference.cache
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\obj\Debug\netcoreapp2.0\Shkembedjijnica.Models.csproj.CoreCompileInputs.cache
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\obj\Debug\netcoreapp2.0\Shkembedjijnica.Models.AssemblyInfoInputs.cache
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\obj\Debug\netcoreapp2.0\Shkembedjijnica.Models.AssemblyInfo.cs
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\obj\Debug\netcoreapp2.0\Shkembedjijnica.Models.dll
-D:\Soft\DB_Advanced\hw8\Shkembedjijnica\Shkembedjijnica.Models\obj\Debug\netcoreapp2.0\Shkembedjijnica.Models.pdb
