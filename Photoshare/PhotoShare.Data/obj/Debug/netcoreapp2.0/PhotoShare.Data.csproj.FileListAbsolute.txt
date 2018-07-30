@@ -1,0 +1,14 @@
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\bin\Debug\netcoreapp2.0\PhotoShare.Data.deps.json
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\bin\Debug\netcoreapp2.0\PhotoShare.Data.runtimeconfig.json
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\bin\Debug\netcoreapp2.0\PhotoShare.Data.runtimeconfig.dev.json
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\bin\Debug\netcoreapp2.0\PhotoShare.Data.dll
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\bin\Debug\netcoreapp2.0\PhotoShare.Data.pdb
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\bin\Debug\netcoreapp2.0\PhotoShare.Models.dll
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\bin\Debug\netcoreapp2.0\PhotoShare.Models.pdb
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\obj\Debug\netcoreapp2.0\PhotoShare.Data.csprojResolveAssemblyReference.cache
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\obj\Debug\netcoreapp2.0\PhotoShare.Data.csproj.CoreCompileInputs.cache
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\obj\Debug\netcoreapp2.0\PhotoShare.Data.AssemblyInfoInputs.cache
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\obj\Debug\netcoreapp2.0\PhotoShare.Data.AssemblyInfo.cs
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\obj\Debug\netcoreapp2.0\PhotoShare.Data.csproj.CopyComplete
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\obj\Debug\netcoreapp2.0\PhotoShare.Data.dll
+E:\Work\SoftUni\DB_Advanced\HW9\PhotoShare.Data\obj\Debug\netcoreapp2.0\PhotoShare.Data.pdb
